@@ -1,12 +1,3 @@
-## Backend Repos
-- [Borcelle API Gateway](https://github.com/akram-idrissi/borcelle-api-gateway).
-- [Borcelle Eureka Server](https://github.com/akram-idrissi/borcelle-eureka-server).
-- [Borcelle Auth Service](https://github.com/akram-idrissi/borcelle-auth-service).
-- [Borcelle Product Service](https://github.com/akram-idrissi/borcelle-product-service).
-- Borcelle Order Service (upcoming).
-- Borcelle Payment Service (upcoming).
-
-
 ##
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
