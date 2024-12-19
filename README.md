@@ -40,14 +40,15 @@ Ce projet constitue le frontend d'une application e-commerce qui fait parti du t
    git clone https://github.com/akram-idrissi/Nutritechagro-Test-Frontend.git
    cd Nutritechagro-Test-Frontend
    ```
+2. Creez un fichier ```.env.local``` et ajoutez cette ligne ```NEXT_PUBLIC_BACKEND_URL=http://127.0.0.1:8000```
 
-2. Executez ces commandes :
+3. Executez ces commandes :
    ```bash
     npm install
     npm run dev
     ```
 
-3. Ouvrez le navigateur et allez sur [http://localhost:3000](http://localhost:3000).
+4. Ouvrez le navigateur et allez sur [http://localhost:3000](http://localhost:3000).
 
 
 ## Endpoints
