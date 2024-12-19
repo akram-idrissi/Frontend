@@ -1,38 +1,59 @@
-##
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nutritechagro-Test-Frontend
 
-## Getting Started
+## Description
 
-First, run the development server:
+Ce projet constitue le frontend d'une application e-commerce qui fait parti du test de Nutritechagro, développé avec Next.js et Tailwind CSS. Ce projet offre une interface utilisateur intuitive en mettant l'accent sur l'expérience utilisateur.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Pourquoi Next.js et Tailwind CSS ?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Next.js**
+1. **Facilité d'intégration** :
+   - Routes basées sur le système de fichiers, simplifiant la configuration.
+   - Possibilité d'intégrer des API backend directement dans le projet via des dossiers `/api`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+2. **Écosystème robuste** :
+   - Support natif pour TypeScript et CSS Modules.
+   - Documentation complète et communauté active.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. **Déploiement simplifié** :
+   - Compatible avec des plateformes de déploiement modernes comme Vercel, ce qui permet un hébergement rapide et performant.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### **Tailwind CSS**
+1. **Rapidité de développement** :
+   - Classes utilitaires prêtes à l'emploi pour styliser rapidement les composants.
+   - Réduction significative du besoin de fichiers CSS personnalisés.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Cohérence visuelle** :
+   - Garde une uniformité dans les styles grâce à des classes standardisées.
+   - Facilité de gestion des thèmes via le fichier `tailwind.config.js`.
+     
+3. **Performance et maintenance** :
+   - Génération automatique de CSS minimaliste, supprimant les classes inutilisées en production avec PurgeCSS.
+   - Réduit les fichiers CSS volumineux souvent difficiles à maintenir.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Installation
 
-## Deploy on Vercel
+1. Clonez le dépôt :
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone https://github.com/akram-idrissi/Nutritechagro-Test-Frontend.git
+   cd Nutritechagro-Test-Frontend
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-"# Nutritechagro-Test---Front-end-" 
+2. Executez ces commandes :
+   ```bash
+    npm install
+    npm run dev
+    ```
+
+3. Ouvrez le navigateur et allez sur [http://localhost:3000](http://localhost:3000).
+
+
+## Endpoints
+- Page d'accueil: [http://localhost:3000](http://localhost:3000)
+- Page de connexion: [http://localhost:3000/signin](http://localhost:3000)
+- Page d'inscription: [http://localhost:3000/signup](http://localhost:3000)
+- Page de rénitialisation de mot de passe (logique n'est pas implementé): [http://localhost:3000/reset-password](http://localhost:3000)
+- Page d'un produit: [http://localhost:3000/products/id](http://localhost:3000)
+- Page d'une categorie (les filtres ne sont pas implementé): [http://localhost:3000/categories/name](http://localhost:3000)
