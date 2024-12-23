@@ -27,7 +27,7 @@ export default function Example() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
+  const [selectedSize, setSelectedSize] = useState('S');
 
   useEffect(() => {
     const fetchProduct = async (id) => {
@@ -85,10 +85,10 @@ export default function Example() {
               </div>
 
               {/* Size picker */}
-              <Sizes sizes={product.sizes} />
+              <Sizes sizes={product.sizes} selectedSize={selectedSize} setSelectedSize={setSelectedSize}/>
 
               {/* Add to cart */}
-              <AddToCart product={product} />
+              <AddToCart product={product} selectedSize={selectedSize} />
 
               {/* Product details */}
               <Details />

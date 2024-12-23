@@ -1,11 +1,9 @@
 'use client'
 
-import { useState } from 'react'
 import { Radio, RadioGroup } from '@headlessui/react'
 
 
-export default function Sizes({ sizes }) {
-  const [selectedSize, setSelectedSize] = useState()
+export default function Sizes({ sizes, selectedSize, setSelectedSize }) {
 
   return (
     <div className="mt-8">
