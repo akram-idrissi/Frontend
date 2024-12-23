@@ -36,10 +36,10 @@ export default function Cart() {
     event.preventDefault();
     const isAuth = localStorage.getItem("is-auth");
 
-    /*if (isAuth)
+    if (isAuth)
       router.push("/checkout");
     else
-      router.push("/signin");*/
+      router.push("/signin?_next=cart");
   };
 
   return (
