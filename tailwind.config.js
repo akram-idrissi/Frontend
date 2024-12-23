@@ -14,8 +14,8 @@ module.exports = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        sans: ['"Poppins"', 'sans-serif'],  // Set Poppins as the default sans font
-        abhaya: ['"Abhaya Libre"', 'serif'], // You can still use Abhaya Libre
+        sans: ['"Poppins"', 'sans-serif'],  
+        abhaya: ['"Abhaya Libre"', 'serif'], 
       },
     },
   },
