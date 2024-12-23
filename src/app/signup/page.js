@@ -1,12 +1,13 @@
 'use client'
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { validateEmail, validatePassword, validateUsername } from "../signin/form-validation";
+
 import { signup } from "./api";
 import Loader from "@/common/loader";
 import ErrorAlert from "@/common/error-alert";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { validateEmail, validatePassword, validateUsername } from "../signin/form-validation";
 
 
 export default function Signup() {
@@ -46,7 +47,7 @@ export default function Signup() {
     useEffect(() => {
         const isAuth = localStorage.getItem("is-auth");
         if (isAuth && isAuth === "true") {
-            router.push(document.referrer || "/");
+            router.push("/");
         } else {
             router.push("/signup");
         }

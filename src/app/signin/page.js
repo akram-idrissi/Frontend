@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+
 import Loader from "@/common/loader";
-import { useRouter } from "next/navigation";
 import ErrorAlert from "@/common/error-alert";
 
 import { login } from "./api";
-import { validatePassword, validateUsername } from "./form-validation";
 import SuccessAlert from "@/common/sucess-alert";
+import { validatePassword, validateUsername } from "./form-validation";
 
 export default function Signin() {
     const router = useRouter();
@@ -20,6 +21,9 @@ export default function Signin() {
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
+
+    const params = useSearchParams();
+    const next =  params.get("_next");
 
 
     const handleSigninForm = async (event) => {
@@ -40,7 +44,10 @@ export default function Signin() {
         if (result.data) {
             setResponse(result.data);
             localStorage.setItem('is-auth', "true");
-            router.push("/");
+            if (next)
+                router.push(next);
+            else
+               router.push("/");
         }
     }
 
@@ -48,13 +55,6 @@ export default function Signin() {
         if (localStorage.getItem("signup-success") === "true") {
             setShowAlert(true);
             localStorage.removeItem("signup-success");
-        }
-
-        const isAuth = localStorage.getItem("is-auth");
-        if (isAuth && isAuth === "true") {
-            router.push(document.referrer || "/");
-        } else {
-            router.push("/signin");
         }
     }, []);
 
