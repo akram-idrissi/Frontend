@@ -54,3 +54,13 @@ export const getProductsFromCart = () => {
         return [];
     }
 };
+
+export const clearCart = () => {
+    try {
+        localStorage.removeItem("products");
+        localStorage.removeItem("products-counter");
+        window.dispatchEvent(new CustomEvent("products-counter"));
+    } catch (error) {
+        return [];
+    }
+}; 
