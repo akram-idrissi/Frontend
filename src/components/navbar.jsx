@@ -13,15 +13,16 @@ const navigation = [
 ]
 
 export default function Navbar({ sticky = false }) {
-    const [isAuth, setIsAuth] = useState(false);
+    const [auth, setAuth] = useState(true);
     const [cartCount, setCartCount] = useState(0);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     useEffect(() => {
-        const authenticated = localStorage.getItem("is-auth") || false;
+        const isAuth = localStorage.getItem("is-auth") == "true" ? true : false;
+        setAuth(isAuth);
+
         const initialCount = parseInt(localStorage.getItem("products-counter")) || 0;
         setCartCount(initialCount);
-        setIsAuth(true ? authenticated == "true" : false);
 
         const handleStorageChange = () => {
             const updatedCount = parseInt(localStorage.getItem("products-counter")) || 0;
@@ -61,18 +62,11 @@ export default function Navbar({ sticky = false }) {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <Menu as="div" className="relative mr-4">
                         <div>
-                            <MenuButton className="relative flex text-sm focus:outline-none">
-                                <span className="absolute -inset-1.5" />
-                                <span className="sr-only">Open user menu</span>
+                            <MenuButton className="relative flex rounded-full text-sm focus:outline-none">
                                 <UserIcon
                                     aria-hidden="true"
                                     className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                 />
-                                {/*<img
-                                    alt=""
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    className="h-8 w-8 rounded-full"
-                                />*/}
                             </MenuButton>
                         </div>
                         <MenuItems
@@ -80,7 +74,7 @@ export default function Navbar({ sticky = false }) {
                             className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                         >
                             {
-                                isAuth ?
+                                auth ?
                                     <>
                                         <MenuItem>
                                             <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
@@ -88,20 +82,21 @@ export default function Navbar({ sticky = false }) {
                                             </Link>
                                         </MenuItem>
                                         <MenuItem>
-                                            <Link href="/logout" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
-                                                logout
+                                            <Link href="/signout" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                                                Sign out
                                             </Link>
                                         </MenuItem>
-                                    </> :
+                                    </>
+                                    :
                                     <>
                                         <MenuItem>
                                             <Link href="/signin" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
-                                                sign in
+                                                Sign in
                                             </Link>
                                         </MenuItem>
                                         <MenuItem>
-                                            <Link href="signup" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
-                                                sign up
+                                            <Link href="/signup" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                                                Sign up
                                             </Link>
                                         </MenuItem>
                                     </>
@@ -153,6 +148,12 @@ export default function Navbar({ sticky = false }) {
                                 ))}
                             </div>
                             <div className="py-6">
+                                {/* <a
+                                    href="#"
+                                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                >
+                                    Log in
+                                </a> */}
                                 <Link href="/cart" className="group -m-2 mr-4 flex items-center p-2">
                                     <ShoppingBagIcon
                                         aria-hidden="true"
@@ -161,12 +162,27 @@ export default function Navbar({ sticky = false }) {
                                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{cartCount}</span>
                                     <span className="sr-only">items in cart, view bag</span>
                                 </Link>
-                                <Link href="/signin" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
-                                    Sign in
-                                </Link>
-                                <Link href="/signup" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
-                                    Sign up
-                                </Link>
+
+                                {
+                                    auth ?
+                                        <>
+                                            <Link href="/orders" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
+                                                Your orders
+                                            </Link>
+                                            <Link href="/signout" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
+                                                Sign out
+                                            </Link>
+                                        </>
+                                        :
+                                        <>
+                                            <Link href="/signin" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
+                                                Sign in
+                                            </Link>
+                                            <Link href="/signup" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
+                                                Sign up
+                                            </Link>
+                                        </>
+                                }
                             </div>
                         </div>
                     </div>
