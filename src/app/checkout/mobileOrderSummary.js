@@ -38,8 +38,8 @@ export default function MobileOrderSummary() {
 
         <DisclosurePanel>
           <ul role="list" className="max-h-[274px] overflow-y-auto divide-y divide-gray-200 border-b border-gray-200">
-            {products.map((product) => (
-              <li key={product.id} className="flex space-x-6 py-6">
+            {products.map((product, id) => (
+              <li key={id} className="flex space-x-6 py-6">
                 <img
                   alt={product.imageAlt}
                   src={product.value.image}

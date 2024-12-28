@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, redirect } from "next/navigation";
 
 import Loader from "@/common/loader";
 import ErrorAlert from "@/common/error-alert";
@@ -44,6 +44,7 @@ export default function Signin() {
         if (result.data) {
             setResponse(result.data);
             localStorage.setItem('is-auth', "true");
+            localStorage.setItem('user', JSON.stringify(result.data.user));
             if (next)
                 router.push(next);
             else
@@ -52,6 +53,10 @@ export default function Signin() {
     }
 
     useEffect(() => {
+        const authenticated = localStorage.getItem("is-auth") || false;
+        if (authenticated && authenticated === "true")
+            redirect("/");
+
         if (localStorage.getItem("signup-success") === "true") {
             setShowAlert(true);
             localStorage.removeItem("signup-success");

@@ -99,7 +99,7 @@ export default function Example() {
           </div>
 
           <Reviews />
-          {/*<RelatedProducts />*/}
+          {<RelatedProducts />}
         </div>
       </main>
 

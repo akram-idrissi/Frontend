@@ -7,7 +7,7 @@ const relatedProducts = [
     name: 'Zip Tote Basket',
     color: 'White and black',
     href: '#',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-03-related-product-01.jpg',
+    imageSrc: 'https://cdn.shopify.com/s/files/1/0415/3819/1512/files/2ea68f24cfad524a1b8d41672fd310f5acac0a93.jpg?v=1722013905',
     imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
     price: '$140',
   },
