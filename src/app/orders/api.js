@@ -16,3 +16,21 @@ export const getOrders = async () => {
     }
     return result;
 }
+
+export const addOrder = async (order) => {
+    const result = { loading: true, error: null, data: null };
+
+    try {
+        const response = await axios.post(`${base_url}/api/orders/add/`, order, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        result.data = response.data;
+    } catch (error) {
+        result.error = "An error occurred while adding order";
+    } finally {
+        result.loading = false;
+    }
+    return result;
+}
