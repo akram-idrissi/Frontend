@@ -12,20 +12,27 @@ import { validateEmail, validatePassword, validateUsername } from "../signin/for
 
 export default function Signup() {
     const router = useRouter();
+    const [email, setEmail] = useState("");
     const [errors, setErrors] = useState({});
     const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
 
     const [error, setError] = useState(false);
-    const [response, setResponse] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const isAuth = localStorage.getItem("is-auth");
+        if (isAuth && isAuth === "true")
+            router.push("/");
+        else
+            router.push("/signup");
+    }, []);
 
     const handleSignupForm = async (event) => {
         event.preventDefault();
 
-        let usernameError = validateUsername(username);
         let emailError = validateEmail(email);
+        let usernameError = validateUsername(username);
         let passwordError = validatePassword(password);
 
         if (usernameError || passwordError || emailError) {
@@ -44,15 +51,6 @@ export default function Signup() {
         }
     }
 
-    useEffect(() => {
-        const isAuth = localStorage.getItem("is-auth");
-        if (isAuth && isAuth === "true") {
-            router.push("/");
-        } else {
-            router.push("/signup");
-        }
-    }, []);
-    
     return (
         <>
             {loading && <Loader />}
