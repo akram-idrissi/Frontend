@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams, redirect } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import Loader from "@/common/loader";
 import ErrorAlert from "@/common/error-alert";
@@ -18,13 +18,22 @@ export default function Signin() {
     const [password, setPassword] = useState("");
 
     const [error, setError] = useState(false);
-    const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
 
     const params = useSearchParams();
-    const next =  params.get("_next");
+    const next = params.get("_next");
 
+    useEffect(() => {
+        if (localStorage.getItem("is-auth") === "true") {
+            router.push("/");
+        }
+
+        if (localStorage.getItem("signup-success") === "true") {
+            setShowAlert(true);
+            localStorage.removeItem("signup-success");
+        }
+    }, []);
 
     const handleSigninForm = async (event) => {
         event.preventDefault();
@@ -41,27 +50,14 @@ export default function Signin() {
         const result = await login({ username, password });
         setError(result.error);
         setLoading(result.loading);
-        if (result.data) {
-            setResponse(result.data);
+        if (result.data)
             localStorage.setItem('is-auth', "true");
-            localStorage.setItem('user', JSON.stringify(result.data.user));
-            if (next)
-                router.push(next);
-            else
-               router.push("/");
-        }
+
+        if (next)
+            router.push(next);
+        else
+            router.push("/");
     }
-
-    useEffect(() => {
-        const authenticated = localStorage.getItem("is-auth") || false;
-        if (authenticated && authenticated === "true")
-            redirect("/");
-
-        if (localStorage.getItem("signup-success") === "true") {
-            setShowAlert(true);
-            localStorage.removeItem("signup-success");
-        }
-    }, []);
 
     return (
         <>
