@@ -1,16 +1,44 @@
 'use client'
 
+import { useState } from 'react';
+import { checkout } from './api';
+import Loader from '@/common/loader';
+import ErrorAlert from '@/common/error-alert';
+import SuccessAlert from '@/common/sucess-alert';
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { addOrder } from '../orders/api';
+import { clearCart } from '../cart/cart';
 
 
 export default function Form() {
+
+  const [error, setError] = useState("");
+  const [payed, setPayed] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleFormSubmission = async (event) => {
+    event.preventDefault();
+
+    const result = await checkout({});
+    setLoading(result.loading);
+    setPayed(result.data ? true : false);
+    setError(result.error);
+    const user = JSON.parse(localStorage.getItem("user"));
+    await addOrder({email: user.email, price: 145, id: user.id, createdAt: "", status: ""});
+    clearCart();
+  }
+
   return (
     <section
       aria-labelledby="payment-heading"
       className="flex-auto overflow-y-auto px-4 pb-16 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pb-24 lg:pt-0"
     >
+      {loading && <Loader />}
+      {error && <ErrorAlert subject='Payment Error' object='Payment failed' /> }
+      {payed && <SuccessAlert subject='Payment Successful' object='' /> }
+
       <div className="mx-auto max-w-lg">
-        <form className="mt-6" >
+        <form className="mt-6" onSubmit={(event) => handleFormSubmission(event) } >
           <div className="grid grid-cols-12 gap-x-4 gap-y-6">
             <div className="col-span-full">
               <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
