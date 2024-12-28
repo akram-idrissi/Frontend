@@ -1,21 +1,20 @@
 'use client'
 
 import { getProductsFromCart } from "@/app/cart/cart"
+import Link from "next/link";
 import { useEffect, useState } from "react"
 
 const taxes = 23
 
 export default function OrderSummary() {
 
-  const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     let p = 0;
     let products = getProductsFromCart();
-    products.map((product, productIdx) => {
-      p += product.value.price;
-    });
+    products.map((product) => {p += product.value.price;});
     setTotal(p + taxes);
     setProducts(products);
   }, []);
@@ -36,20 +35,15 @@ export default function OrderSummary() {
             />
             <div className="flex flex-col justify-between space-y-4">
               <div className="space-y-1 text-sm font-medium">
-                <h3 className="text-gray-900">{product.value.title}</h3>
-                <p className="text-gray-900">{product.value.price}</p>
+                <h3 className="text-gray-900 max-w-48 truncate" title={product.value.title}>{product.value.title}</h3>
+                <p className="text-gray-900">{product.value.price} MAD</p>
                 {/* <p className="text-gray-500">{product.color}</p> */}
-                <p className="text-gray-500">{product.value.size}</p>
+                <p className="text-gray-500">Size: {product.value.size}</p>
               </div>
               <div className="flex space-x-4">
-                <button type="button" className="text-sm font-medium text-black hover:text-black">
+                <Link href={"/cart"} className="text-sm font-medium text-black hover:text-black">
                   Edit
-                </button>
-                <div className="flex border-l border-gray-300 pl-4">
-                  <button type="button" className="text-sm font-medium text-black hover:text-black">
-                    Remove
-                  </button>
-                </div>
+                </Link>
               </div>
             </div>
           </li>
