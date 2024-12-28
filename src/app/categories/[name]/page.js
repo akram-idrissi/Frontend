@@ -22,9 +22,9 @@ export default function CategoryListing() {
   const searchParams = useSearchParams();
   const initialPage = parseInt(searchParams.get('page')) || 1;
 
+  const [error, setError] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
@@ -35,26 +35,18 @@ export default function CategoryListing() {
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    router.push(`?page=${newPage}`); 
+    router.push(`?page=${newPage}`);
   };
 
 
   useEffect(() => {
     const fetchProducts = async (category, currentPage) => {
-      try {
-        const result = await getProductsByCategory(category, currentPage);
-        setLoading(false);
-        if (result.error) {
-          setError(result.error);
-        } else {
-          setTotalPages(result.data.total_pages);
-          setCurrentPage(result.data.current_page);
-          setProducts(result.data.products);
-        }
-      } catch (err) {
-        setLoading(false);
-        setError("An error occurred while fetching the products.");
-      }
+      const result = await getProductsByCategory(category, currentPage);
+      setError(result.error);
+      setLoading(result.loading);
+      setTotalPages(result.data.total_pages);
+      setCurrentPage(result.data.current_page);
+      setProducts(result.data.products);
     };
 
     fetchProducts(category, currentPage);
@@ -79,15 +71,16 @@ export default function CategoryListing() {
 
         <div className="pb-24 pt-12 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
           <Filter setMobileFiltersOpen={setMobileFiltersOpen} />
-          
+
           <section aria-labelledby="product-heading" className="mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3">
             <h2 id="product-heading" className="sr-only">
               Products
             </h2>
-            {loading ? "Loading"  :
+            {error && error}
+            {loading ? "Loading" :
               <>
                 <ProductsListing products={products} />
-                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}  />
+                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
               </>
             }
             {error && error}
