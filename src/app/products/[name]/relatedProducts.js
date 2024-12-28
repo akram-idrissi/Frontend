@@ -4,12 +4,11 @@
 const relatedProducts = [
   {
     id: 1,
-    name: 'Zip Tote Basket',
-    color: 'White and black',
+    name: 'Broadway Houndstooth ',
+    color: 'Brown/Cream',
     href: '#',
-    imageSrc: 'https://cdn.shopify.com/s/files/1/0415/3819/1512/files/2ea68f24cfad524a1b8d41672fd310f5acac0a93.jpg?v=1722013905',
-    imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: '$140',
+    imageSrc: 'https://cdn.shopify.com/s/files/1/0415/3819/1512/files/wu03hswh0vaavxwkpune.jpg?v=1722013873',
+    price: '145 MAD',
   },
 ]
 
