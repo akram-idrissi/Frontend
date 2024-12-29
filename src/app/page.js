@@ -7,6 +7,7 @@ import Testimonials from '@/components/home/testimonials'
 import NewsLetter from '@/components/home/newsLetter'
 import Footer from '@/components/footer'
 
+export const dynamic = "force-static";
 
 export default function Home() {
 
