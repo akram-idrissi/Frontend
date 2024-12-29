@@ -1,5 +1,3 @@
-'use client'
-
 import Navbar from '@/components/navbar'
 import Hero from '@/components/home/hero'
 import Categories from '@/components/home/categories'
