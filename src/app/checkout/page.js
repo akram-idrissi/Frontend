@@ -1,21 +1,16 @@
-'use client'
-
-import { useEffect } from 'react'
-
 import Form from './form'
 import Navbar from '@/components/navbar'
 import OrderSummary from './orderSummary'
 import MobileOrderSummary from './mobileOrderSummary'
+import { RemoveXScroll } from './client-components'
 
 
 export default function Checkout() {
 
-  useEffect(() => {
-    document.getElementsByTagName("body")[0].classList.add("overflow-x-hidden");
-  }, []);
 
   return (
     <>
+      <RemoveXScroll />
       <Navbar sticky={true} />
       <main className="lg:flex lg:min-h-full lg:flex-row-reverse lg:overflow-hidden">
 
