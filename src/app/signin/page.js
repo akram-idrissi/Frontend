@@ -50,8 +50,10 @@ export default function Signin() {
         const result = await login({ username, password });
         setError(result.error);
         setLoading(result.loading);
-        if (result.data)
+        if (result.data) {
             localStorage.setItem('is-auth', "true");
+            localStorage.setItem('user', JSON.stringify(result.data.user));
+        }
 
         if (next)
             router.push(next);
