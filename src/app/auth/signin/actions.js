@@ -25,7 +25,7 @@ export async function signin(prevSate, formData) {
             message: 'Please fix the errors in the form',
             errors: data.error.flatten().fieldErrors,
             inputs: rawData
-          }
+        }
     }
 
     const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -36,12 +36,16 @@ export async function signin(prevSate, formData) {
     });
 
     if (!response.ok) {
-        const errorResponse = await response.json();
         return {
-            message: errorResponse.detail || `Response status: ${response.status}`,
-        };
+            success: false,
+            status: response.status,
+            message: 'An unexpected error occurred',
+        }
     }
     const json = await response.json();
-    console.log(json);
-    redirect("/");
+    return {
+        success: true,
+        response: json,
+        message: 'Signed in successfully!',
+    }
 }
