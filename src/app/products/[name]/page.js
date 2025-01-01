@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 
 import Navbar from '@/components/navbar'
 import Reviews from '@/components/reviews'
@@ -22,12 +22,15 @@ import Breadcrumb from '../../../components/breadcrumb';
 const categoriesURI = "/categories";
 
 
-export default function Example() {
+export default function ProductPage() {
   const id = useParams()["name"];
   const [error, setError] = useState("");
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState('');
+
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category');
 
   useEffect(() => {
     const fetchProduct = async (id) => {
@@ -95,7 +98,7 @@ export default function Example() {
           </div>
 
           <Reviews />
-          {<RelatedProducts />}
+          <RelatedProducts category={category} productID={id} />
         </div>
       </main>
 

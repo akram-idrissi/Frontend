@@ -16,3 +16,17 @@ export const getProductById = async (id) => {
   }
   return result;
 };
+
+export const getSimilarProducts = async (category, id) => {
+  const result = {loading: true, error: null, data: null};
+
+  try {
+    const response = await axios.get(`${backendURL}/api/similar-products/${category}/${id}`);
+    result.data = response.data;
+  } catch (error) {
+    result.error = error.message || "An error occurred while fetching similar products";
+  } finally {
+    result.loading = false;
+  }
+  return result;
+};
