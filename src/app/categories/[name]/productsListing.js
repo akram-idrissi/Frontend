@@ -21,7 +21,7 @@ export default function ProductsListing({ products }) {
           </div>
           <div className="flex flex-1 flex-col space-y-2 p-4">
             <h3 className="text-sm font-medium text-gray-900 max-w-64 truncate">
-              <Link href={{ pathname: `/products/${product.id}`, }}>
+              <Link href={`/products/${product.id}?category=${product.category}`}>
                 <span aria-hidden="true" className="absolute inset-0" />
                 {product.title}
               </Link>
