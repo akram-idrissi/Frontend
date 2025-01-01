@@ -20,7 +20,12 @@ export async function signin(prevSate, formData) {
     const data = signInSchema.safeParse(rawData);
 
     if (!data.success) {
-        return { errors: data.error.flatten().fieldErrors }
+        return {
+            success: false,
+            message: 'Please fix the errors in the form',
+            errors: data.error.flatten().fieldErrors,
+            inputs: rawData
+          }
     }
 
     const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
