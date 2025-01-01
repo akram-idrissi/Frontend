@@ -12,13 +12,15 @@ const signInSchema = z.object({
 
 export async function signin(prevSate, formData) {
 
-    const data = signInSchema.safeParse({
+    const rawData = {
         username: formData.get('username'),
         password: formData.get('password'),
-    });
-    
+    }
+
+    const data = signInSchema.safeParse(rawData);
+
     if (!data.success) {
-        return {errors: data.error.flatten().fieldErrors}
+        return { errors: data.error.flatten().fieldErrors }
     }
 
     const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
