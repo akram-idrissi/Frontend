@@ -1,8 +1,9 @@
 "use server"
 
 
-import { redirect } from "next/navigation";
 import { z } from "zod";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 
 const signInSchema = z.object({
@@ -43,9 +44,8 @@ export async function signin(prevSate, formData) {
         }
     }
     const json = await response.json();
-    return {
-        success: true,
-        response: json,
-        message: 'Signed in successfully!',
-    }
+    const cookieStore = cookies();
+    cookieStore.set('user', JSON.stringify(json.user), { secure: true, priority: "high" })
+
+    redirect("/")
 }
