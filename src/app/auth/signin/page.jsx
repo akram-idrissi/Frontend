@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
 import { signin } from "./actions";
-import { useState } from "react";
+import ErrorAlert from "@/common/error-alert";
 
 const initialState = {
     message: null,
@@ -17,6 +17,7 @@ export default function Signin() {
 
     return (
         <>
+            {state?.status === 401 && <ErrorAlert subject="Signin error: " object="Invalid credentials"  />}
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <Link href={"/"} className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
