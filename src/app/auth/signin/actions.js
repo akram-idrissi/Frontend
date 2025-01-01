@@ -5,15 +5,12 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 
-export async function signin(prevSate, formData) {
+const signInSchema = z.object({
+    username: z.string().max(15, 'Username must be at most 15 characters long').nonempty('Username is required'),
+    password: z.string().min(8, 'Password must be at least 8 characters long').nonempty('Password is required'),
+});
 
-    const signInSchema = z.object({
-        username: z.string().nonempty('Username is required'),
-        password: z
-            .string()
-            .min(8, 'Password must be at least 8 characters long')
-            .nonempty('Password is required'),
-    });
+export async function signin(prevSate, formData) {
 
     const data = signInSchema.safeParse({
         username: formData.get('username'),
