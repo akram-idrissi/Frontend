@@ -5,6 +5,7 @@ import { useFormState, useFormStatus } from "react-dom";
 
 import { signup } from "./actions";
 import ErrorAlert from "@/common/error-alert";
+import { SubmitButton } from "../components/submit-button";
 
 const initialState = {
     message: null,
@@ -91,14 +92,7 @@ export default function Signup() {
                             {state?.errors?.password && <p className="text-xs text-red-500">{state?.errors?.password}</p>}
                         </div>
 
-                        <div>
-                            <button
-                                type="submit"
-                                className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                            >
-                                Sign up
-                            </button>
-                        </div>
+                        <SubmitButton />
                     </form>
 
                     <p className="mt-10 text-center text-sm text-gray-500">
