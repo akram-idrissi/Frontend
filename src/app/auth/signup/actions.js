@@ -2,7 +2,7 @@
 
 
 import { z } from "zod";
-import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 
 const signUpSchema = z.object({
@@ -45,5 +45,5 @@ export async function signup(prevSate, formData) {
         }
     }
 
-    revalidatePath("/signin")
+    redirect("/signin")
 }
