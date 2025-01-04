@@ -90,12 +90,12 @@ export default function Navbar({ sticky = false }) {
                                     :
                                     <>
                                         <MenuItem>
-                                            <Link href="/signin" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                                            <Link href="/auth/signin" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                                                 Sign in
                                             </Link>
                                         </MenuItem>
                                         <MenuItem>
-                                            <Link href="/signup" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                                            <Link href="/auth/signup" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                                                 Sign up
                                             </Link>
                                         </MenuItem>
@@ -175,10 +175,10 @@ export default function Navbar({ sticky = false }) {
                                         </>
                                         :
                                         <>
-                                            <Link href="/signin" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
+                                            <Link href="/auth/signin" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
                                                 Sign in
                                             </Link>
-                                            <Link href="/signup" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
+                                            <Link href="/auth/signup" className="group -m-2 mr-4 flex items-center p-2 font-semibold leading-6 text-gray-900">
                                                 Sign up
                                             </Link>
                                         </>
