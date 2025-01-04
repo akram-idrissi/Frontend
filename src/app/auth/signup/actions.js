@@ -2,7 +2,6 @@
 
 
 import { z } from "zod";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 
@@ -45,9 +44,6 @@ export async function signup(prevSate, formData) {
             message: 'An unexpected error occurred',
         }
     }
-    const json = await response.json();
-    const cookieStore = cookies();
-    cookieStore.set('user', JSON.stringify(json.user), { secure: true, priority: "high" })
 
     redirect("/signin")
 }
