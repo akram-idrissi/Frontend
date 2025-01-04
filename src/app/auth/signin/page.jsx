@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 
 import { signin } from "./actions";
 import ErrorAlert from "@/common/error-alert";
@@ -15,7 +15,6 @@ const initialState = {
 export default function Signin() {
 
     const [state, formaAction] = useFormState(signin, initialState);
-    const { pending } = useFormStatus();
 
     return (
         <>
