@@ -5,6 +5,7 @@ import { useFormState, useFormStatus } from "react-dom";
 
 import { signin } from "./actions";
 import ErrorAlert from "@/common/error-alert";
+import { SubmitButton } from "../components/submit-button";
 
 const initialState = {
     message: null,
@@ -18,7 +19,7 @@ export default function Signin() {
 
     return (
         <>
-            {state?.status === 401 && <ErrorAlert subject="Signin error: " object="Invalid credentials"  />}
+            {state?.status === 401 && <ErrorAlert subject="Signin error: " object="Invalid credentials" />}
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <Link href={"/"} className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
@@ -83,18 +84,11 @@ export default function Signin() {
                                 <p className="text-xs text-red-500">
                                     {state.errors.password}
                                 </p>
-                            ) }
+                            )}
                         </div>
 
-                        <div>
-                            <button
-                                type="submit"
-                                disabled={pending}
-                                className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                            >
-                                Sign in
-                            </button>
-                        </div>
+                        <SubmitButton />
+
                     </form>
 
                     <p className="mt-10 text-center text-sm text-gray-500">
