@@ -1,8 +1,5 @@
-'use client'
-
-
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 import {
   Dialog,
