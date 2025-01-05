@@ -1,17 +1,12 @@
-import axios from "axios";
-
-
 const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
-export const getProductsByCategory = async (category, page=1, size=5) => {
-  const result = {loading: true, error: null, data: null};
+
+export const getCategoryProducts = async (category, page=1, size=5) => {
 
   try {
-    const response = await axios.get(`${backendURL}/api/categories/${category}?page=${page}`);
-    result.data = response.data;
+    const url = `${backendURL}/api/categories/${category}?page=${page}`;
+    const response = await fetch(url, {cache: "no-store", method: "GET"});
+    return await response.json();
   } catch (error) {
-    result.error = error.message || "An error occurred while fetching category products";
-  } finally {
-    result.loading = false;
+    return error.message || "An error occurred while fetching category products";
   }
-  return result;
 };
