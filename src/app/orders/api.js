@@ -1,3 +1,5 @@
+"use server"
+
 import { cookies } from 'next/headers'
 
 const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
