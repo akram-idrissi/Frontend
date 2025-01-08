@@ -1,5 +1,3 @@
-'use client'
-
 import { addToCart } from '@/app/cart/cart';
 
 

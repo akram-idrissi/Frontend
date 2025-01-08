@@ -1,6 +1,3 @@
-'use client'
-
-
 const details = {
   colors: [
     { name: 'Black', bgColor: 'bg-gray-900', selectedColor: 'ring-gray-900' },

@@ -1,5 +1,3 @@
-'use client'
-
 import { GlobeAmericasIcon, CurrencyDollarIcon } from '@heroicons/react/20/solid'
 
 
