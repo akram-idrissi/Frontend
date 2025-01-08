@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
@@ -13,7 +12,6 @@ import Link from 'next/link'
 
 export default function Cart() {
 
-  const router = useRouter()
   const [products, setProducts] = useState([]);
   const [price, setPrice] = useState(0);
 
