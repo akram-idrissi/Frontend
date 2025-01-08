@@ -1,36 +1,32 @@
-import axios from "axios";
+import { cookies } from 'next/headers'
 
-const base_url = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export const getOrders = async () => {
-    const result = { loading: true, error: null, data: null };
-
     try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const response = await axios.get(`${base_url}/api/orders/user/${user.id}/`);
-        result.data = response.data;
+        const user = JSON.parse(cookies().get("user").value);
+
+        const url = `${backendURL}/api/orders/user/${user.id}`;
+        
+        const response = await fetch(url, { cache: "no-store", method: "GET" });
+        const data =  await response.json();
+        return data;
     } catch (error) {
-        result.error = "An error occurred while fetching orders";
-    } finally {
-        result.loading = false;
+        return error.message || "An error occurred while fetching orders";
     }
-    return result;
 }
 
 export const addOrder = async (order) => {
-    const result = { loading: true, error: null, data: null };
-
     try {
-        const response = await axios.post(`${base_url}/api/orders/add/`, order, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
+        const url = `${backendURL}/api/orders/add/`;
+        const response = await fetch(url, {
+            method: "POST",
+            cache: "no-store", 
+            body: JSON.stringify(order),
+            headers: { 'Content-Type': 'application/json' }
         });
-        result.data = response.data;
+        return await response.json();
     } catch (error) {
-        result.error = "An error occurred while adding order";
-    } finally {
-        result.loading = false;
+        return error.message || "An error occurred while adding orders";
     }
-    return result;
 }
