@@ -8,6 +8,7 @@ import Footer from '@/components/footer'
 
 import { XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
 import { getProductsFromCart, removeFromCart } from './cart'
+import Link from 'next/link'
 
 
 export default function Cart() {
@@ -52,7 +53,7 @@ export default function Cart() {
       <main className="mx-auto max-w-2xl px-4 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Your Cart</h1>
 
-        <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+        <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           <section aria-labelledby="cart-heading" className="lg:col-span-7">
             <h2 id="cart-heading" className="sr-only">
               Items in your shopping cart
@@ -131,16 +132,15 @@ export default function Cart() {
             </dl>
 
             <div className="mt-6">
-              <button
-                type="submit"
-                onClick={(event) => handleCheckoutBtn(event)}
-                className="w-full rounded-md border border-transparent bg-black px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-50"
+              <Link
+                href={"/checkout"}
+                className="inline-block text-center w-full rounded-md border border-transparent bg-black px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 Checkout
-              </button>
+              </Link>
             </div>
           </section>
-        </form>
+        </div>
 
         <section aria-labelledby="policies-heading" className="mt-8"></section>
       </main>
