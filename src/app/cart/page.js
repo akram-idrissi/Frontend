@@ -33,16 +33,6 @@ export default function Cart() {
     setProducts(getProductsFromCart());
   };
 
-  const handleCheckoutBtn = (event) => {
-    event.preventDefault();
-    const isAuth = localStorage.getItem("is-auth");
-
-    if (isAuth)
-      router.push("/checkout");
-    else
-      router.push("/signin?_next=cart");
-  };
-
   return (
     <div className="bg-white">
 
