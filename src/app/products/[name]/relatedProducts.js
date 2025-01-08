@@ -1,21 +1,6 @@
-'use client'
-
 import Link from "next/link"
-import { useEffect, useState } from "react";
-import { getSimilarProducts } from "./api";
 
-export default function RelatedProducts({category, productID}) {
-
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-      const fetchSimialrProducts = async (category, productID) => {
-          const result = await getSimilarProducts(category, productID);
-          setProducts(result.data.products);
-      };
-  
-      fetchSimialrProducts(category, productID);
-  }, [category, productID]);
+export default function RelatedProducts({products}) {
 
   return (
     <section aria-labelledby="related-heading" className="mt-10 border-t border-gray-200 px-4 py-16 sm:px-0">

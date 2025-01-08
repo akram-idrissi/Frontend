@@ -1,7 +1,4 @@
-'use client'
-
 import { Radio, RadioGroup } from '@headlessui/react'
-
 
 export default function Sizes({ sizes, selectedSize, setSelectedSize }) {
 
