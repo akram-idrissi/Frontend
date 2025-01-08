@@ -1,27 +1,12 @@
-'use client'
-
-import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
-import { useEffect, useState } from "react";
+import Footer from "@/components/footer"
 import { getOrders } from "./api";
 
-export default function Orders() {
+export default async function Orders() {
 
-    const [error, setError] = useState([]);
-    const [orders, setOrders] = useState([]);
-    const [loader, setLoader] = useState(true);
+    const orders = await getOrders();     
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            const result = await getOrders();
-            setOrders(result.data || []);
-            setError(result.error);
-            setLoader(result.loading);
-        }
-        fetchOrders();
-    }, []);
-
-    return (
+    return (  
         <>
             <Navbar sticky={true} />
             <div className="px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl my-20">
@@ -57,10 +42,9 @@ export default function Orders() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {error && error}
-                                    {loader ? <tr><td>Loading...</td></tr> :
+                                    {!orders ? <tr><td>Loading...</td></tr> :
                                         <>
-                                            {orders.map((order, id) => (
+                                            {orders?.map((order, id) => (
                                                 <tr key={id}>
                                                     <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
                                                         <div className="flex items-center">
