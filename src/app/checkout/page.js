@@ -2,7 +2,6 @@ import Form from './form'
 import Navbar from '@/components/navbar'
 import OrderSummary from './orderSummary'
 import MobileOrderSummary from './mobileOrderSummary'
-import { RemoveXScroll } from './client-components'
 
 
 export default function Checkout() {
@@ -10,7 +9,6 @@ export default function Checkout() {
 
   return (
     <>
-      <RemoveXScroll />
       <Navbar sticky={true} />
       <main className="lg:flex lg:min-h-full lg:flex-row-reverse lg:overflow-hidden">
 
