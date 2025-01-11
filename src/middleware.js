@@ -10,7 +10,7 @@ export function middleware(request) {
     }
   } else if (pathname === '/checkout') {
     if (!user) {
-      return NextResponse.redirect(new URL(`/auth/signin?_next=cart`, request.url));
+      return NextResponse.redirect(new URL(`/auth/signin`, request.url));
     }
     else if (pathname === '/orders') {
       if (!user)
