@@ -1,6 +1,4 @@
 import Stars from '@/components/stars';
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
 import Reviews from '@/components/reviews'
 import Breadcrumb from '@/components/breadcrumb';
 
@@ -32,7 +30,6 @@ export default async function ProductPage({ params, searchParams }) {
   return (
     <div className="bg-white">
 
-      <Navbar sticky={true} />
       <Breadcrumb links={breadcrumbLinks} />
 
       <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8 pt-10">
@@ -74,7 +71,6 @@ export default async function ProductPage({ params, searchParams }) {
         </div>
       </main>
 
-      <Footer />
     </div>
   )
 }

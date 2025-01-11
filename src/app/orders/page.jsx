@@ -1,5 +1,3 @@
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
 import { getOrders } from "./api";
 
 export default async function Orders() {
@@ -8,7 +6,6 @@ export default async function Orders() {
 
     return (  
         <>
-            <Navbar sticky={true} />
             <div className="px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl my-20">
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
@@ -75,7 +72,6 @@ export default async function Orders() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
     )
 }

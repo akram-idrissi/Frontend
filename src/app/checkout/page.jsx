@@ -1,5 +1,4 @@
 import Form from './form'
-import Navbar from '@/components/navbar'
 import OrderSummary from './orderSummary'
 import MobileOrderSummary from './mobileOrderSummary'
 
@@ -9,7 +8,6 @@ export default function Checkout() {
 
   return (
     <>
-      <Navbar sticky={true} />
       <main className="lg:flex lg:min-h-full lg:flex-row-reverse lg:overflow-hidden">
 
 

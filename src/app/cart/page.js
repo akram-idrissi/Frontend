@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react'
 
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
 
 import { XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
 import { getProductsFromCart, removeFromCart } from './cart'
@@ -33,10 +31,6 @@ export default function Cart() {
 
   return (
     <div className="bg-white">
-
-      <header className="relative bg-white">
-        <Navbar />
-      </header>
 
       <main className="mx-auto max-w-2xl px-4 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Your Cart</h1>
@@ -133,7 +127,6 @@ export default function Cart() {
         <section aria-labelledby="policies-heading" className="mt-8"></section>
       </main>
 
-      <Footer />
     </div>
   )
 }
