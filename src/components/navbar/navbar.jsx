@@ -12,7 +12,7 @@ export default function Navbar({ sticky = false }) {
 
     return (
         <header className={`${sticky && "sticky"} top-0 z-50 bg-white/60 backdrop-blur-lg`}>
-            <NavbarWrapper  isAuth={true} cartCount={4} navigation={navigation} />
+            <NavbarWrapper navigation={navigation} />
         </header>
     )
 }
