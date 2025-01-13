@@ -14,11 +14,13 @@ export function middleware(request) {
   } else if (pathname === '/orders') {
     if (!user)
       return NextResponse.redirect(new URL(`/`, request.url));
+  } else if (pathname === '/') {
+    return NextResponse.redirect(new URL(`/home`, request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/auth/:path*', '/checkout', '/orders'],
+  matcher: ['/auth/:path*', '/checkout', '/orders', '/'],
 };
