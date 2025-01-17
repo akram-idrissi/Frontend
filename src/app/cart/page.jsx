@@ -1,33 +1,11 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-
-
-import { XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
-import { getProductsFromCart, removeFromCart } from './cart'
-import Link from 'next/link'
+import { getProductsFromCart } from './actions'
+import RemoveFromCart from './remove-product';
+import CartOrderSummary from './order-summary';
 
 
-export default function Cart() {
+export default async function Cart() {
 
-  const [products, setProducts] = useState([]);
-  const [price, setPrice] = useState(0);
-
-  useEffect(() => {
-    let p = 0;
-    let products = getProductsFromCart();
-    products.map((product, productIdx) => {
-      p += product.value.price;
-    });
-    setPrice(p);
-    setProducts(products);
-  }, []);
-
-  const handleRemove = (product) => {
-    removeFromCart(product.id);
-    setPrice(price - product.price);
-    setProducts(getProductsFromCart());
-  };
+  const products = await getProductsFromCart();
 
   return (
     <div className="bg-white">
@@ -41,8 +19,10 @@ export default function Cart() {
               Items in your shopping cart
             </h2>
 
-            <ul role="list" className="sm:max-h-[274px] sm:overflow-x-hidden sm:overflow-y-auto divide-y divide-gray-200 border-b border-t border-gray-200">
-              {products.map((product, productIdx) => (
+            <ul role="list" className="sm:max-h-[274px] sm:overflow-x-hidden sm:overflow-y-auto divide-y divide-gray-200 border-t border-gray-200">
+              {
+                products.cart.length === 0 ? "Your cart is empty" :
+              products.cart.map((product, productIdx) => (
                 <li key={productIdx} className="flex py-6 sm:py-10">
                   <div className="flex-shrink-0">
                     <img
@@ -74,54 +54,19 @@ export default function Cart() {
                         <label htmlFor={`quantity-${productIdx}`} className="sr-only">
                           Quantity, {product.name}
                         </label>
-
-                        {/*<input type="number" min={1} placeholder='1' name={`quantity-${productIdx}`} id={`quantity-${productIdx}`}
-                          className="w-1/2 rounded-md border border-gray-300 py-1.5 text-left text-base font-medium 
-                          leading-5 text-gray-700 shadow-sm focus:border-black focus:outline-none focus:ring-1 focus:ring-black sm:text-sm" /> 
-                        */}
-                        <div className="absolute right-0 top-0" onClick={() => handleRemove(product.value)}>
-                          <button type="button" className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
-                            <span className="sr-only">Remove</span>
-                            <XMarkIconMini aria-hidden="true" className="h-5 w-5" />
-                          </button>
-                        </div>
+                       
+                        <RemoveFromCart product={product.value} />
                       </div>
                     </div>
                   </div>
                 </li>
-              ))}
+              ))
+              }
             </ul>
           </section>
 
           {/* Order summary */}
-          <section
-            aria-labelledby="summary-heading"
-            className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
-          >
-            <h2 id="summary-heading" className="text-lg font-medium text-gray-900">
-              Orders
-            </h2>
-
-            <dl className="mt-6 space-y-4">
-              <div className="flex items-center justify-between">
-                <dt className="text-sm text-gray-600">Sub total</dt>
-                <dd className="text-sm font-medium text-gray-900">{price} MAD</dd>
-              </div>
-              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                <dt className="text-base font-medium text-gray-900">Total</dt>
-                <dd className="text-base font-medium text-gray-900">{price} MAD</dd>
-              </div>
-            </dl>
-
-            <div className="mt-6">
-              <Link
-                href={"/checkout"}
-                className="inline-block text-center w-full rounded-md border border-transparent bg-black px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-50"
-              >
-                Checkout
-              </Link>
-            </div>
-          </section>
+          <CartOrderSummary />
         </div>
 
         <section aria-labelledby="policies-heading" className="mt-8"></section>
